@@ -1,0 +1,15 @@
+.background {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: start;
+    background-color: #171717    ;
+    gap:12px;
+    border: solid 1px #444444;
+}
+
+@media (max-width: 1020px) {
+    .background {
+        flex-direction: column;
+    }
+}

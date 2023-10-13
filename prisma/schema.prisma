@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs https//pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model OutlayRow {
+  id                    Int         @id @default(autoincrement())
+  rowName               String
+  parentId              Int?
+  mainCosts             Int
+  equipmentCosts        Int
+  machineOperatorSalary Int
+  materials             Int
+  mimExploitation       Int
+  overheads             Int
+  salary                Int
+  supportCosts          Int
+  estimatedProfit       Int
+  total                 Int
+  children              OutlayRow[] @relation("ParentToChild")
+  parent                OutlayRow? @relation("ParentToChild", fields: [parentId], references: [id], onDelete: Cascade)
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+}
